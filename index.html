@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraSkin | Institut d'Épilation Laser Définitive</title>
+    <meta name="description"
+        content="AuraSkin — Experts en épilation laser définitive à Angers. Technologie de pointe pour une peau lisse et soyeuse. Prenez rendez-vous aujourd'hui." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            gold: '#D08B7A',
+                            copper: '#C27A6A',
+                            blush: '#E4A493',
+                            light: '#F2CBC1',
+                            pale: '#F9E4DF',
+                        },
+                        slate: {
+                            deep: '#1E252B',
+                            abyss: '#12161A',
+                            mid: '#2A3239',
+                        },
+                        cream: '#FAF7F5',
+                        ivory: '#FFF8F5',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        luxe: '0.22em',
+                        wider2: '0.12em',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'shimmer': 'shimmer 3s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        shimmer: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(208,139,122,0.25)' },
+                            '50%': { boxShadow: '0 0 40px rgba(208,139,122,0.5)' },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Inline styles for things Tailwind can't do alone -->
+    <style>
+        /* Smooth page transitions */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Global reset */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Rose-gold gradient text utility */
+        .text-gradient-rose {
+            background: linear-gradient(135deg, #E4A493, #D08B7A, #C27A6A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rose-gold metallic gradient background */
+        .bg-gradient-rose {
+            background: linear-gradient(135deg, #E4A493 0%, #D08B7A 40%, #C27A6A 70%, #D08B7A 100%);
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        /* Navbar backdrop when scrolled */
+        .nav-scrolled {
+            background: rgba(18, 22, 26, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Intersection Observer animation helper */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Treatment card hover lift */
+        .treatment-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(208, 139, 122, 0.18);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #12161A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D08B7A;
+            border-radius: 3px;
+        }
+
+        /* Image placeholder styling */
+        .img-placeholder {
+            background: linear-gradient(135deg, #2A3239 0%, #1E252B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D08B7A;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body class="font-body text-gray-100 bg-cream antialiased">
+
+    <!-- ========================== -->
+    <!-- NAVIGATION BAR             -->
+    <!-- ========================== -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
+            <!-- Logo / Brand -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <span
+                    class="font-heading font-semibold text-lg tracking-luxe text-white group-hover:text-rose-gold transition-colors duration-300">
+                    AURASKIN LASER
+                </span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#philosophy"
+                    class="font-heading text-xs tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors duration-300">Philosophie</a>
+                <a href="#treatments"
+                    class="font-heading text-xs tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors duration-300">Soins</a>
+                <a href="#pricing"
+                    class="font-heading text-xs tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors duration-300">Tarifs</a>
+                <a href="#contact"
+                    class="font-heading text-xs tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors duration-300">Contact</a>
+                <a href="https://www.planity.com/auraskin" id="nav-book-btn"
+                    class="ml-2 font-heading text-xs tracking-wider2 uppercase px-6 py-2.5 rounded-full bg-gradient-to-r from-rose-blush via-rose-gold to-rose-copper text-white hover:shadow-lg hover:shadow-rose-gold/30 transition-all duration-300 hover:scale-105">
+                    Prendre Rendez-vous
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 group" aria-label="Toggle menu">
+                <span
+                    class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-2"></span>
+                <span class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.open]:opacity-0"></span>
+                <span
+                    class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-2"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="md:hidden hidden flex-col items-center gap-6 pb-8 bg-slate-abyss/95 backdrop-blur-xl">
+            <a href="#philosophy"
+                class="font-heading text-sm tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors">Notre
+                Philosophie</a>
+            <a href="#treatments"
+                class="font-heading text-sm tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors">Soins</a>
+            <a href="#contact"
+                class="font-heading text-sm tracking-wider2 uppercase text-gray-300 hover:text-rose-gold transition-colors">Contact</a>
+            <a href="https://www.planity.com/auraskin"
+                class="font-heading text-sm tracking-wider2 uppercase px-8 py-3 rounded-full bg-gradient-to-r from-rose-blush via-rose-gold to-rose-copper text-white">
+                Prendre Rendez-vous
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- ========================== -->
+    <!-- HERO SECTION               -->
+    <!-- ========================== -->
+    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-slate-abyss">
+        <!-- Background gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-abyss via-slate-deep to-slate-mid opacity-90 z-10">
+        </div>
+
+        <!-- Decorative rose-gold orb -->
+        <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-rose-gold/10 blur-[120px] z-10">
+        </div>
+        <div class="absolute bottom-1/4 left-1/6 w-[300px] h-[300px] rounded-full bg-rose-blush/8 blur-[100px] z-10">
+        </div>
+
+        <!-- Hero image (right side on desktop) -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/hero.png" alt="Radiant skin with rose-gold glow"
+                class="w-full h-full object-cover opacity-30" />
+        </div>
+
+        <!-- Content -->
+        <div
+            class="relative z-20 max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center w-full py-32 lg:py-0">
+            <!-- Left: Text -->
+            <div class="text-center lg:text-left">
+                <p class="font-heading text-xs tracking-luxe uppercase text-rose-gold mb-6 animate-fade-in"
+                    style="animation-delay: 0.2s;">
+                    Esthétique Laser Avancée
+                </p>
+                <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight text-white mb-6 animate-fade-in-up"
+                    style="animation-delay: 0.4s;">
+                    Oubliez<br />
+                    <span class="text-gradient-rose font-semibold">le Rasoir.</span><br />
+                    Vivez la <span class="text-gradient-rose font-semibold">Liberté.</span>
+                </h1>
+                <p class="font-body text-gray-400 text-base lg:text-lg max-w-lg mx-auto lg:mx-0 mb-10 leading-relaxed animate-fade-in"
+                    style="animation-delay: 0.6s;">
+                    L'excellence de l'épilation laser médicale au cœur d'Angers. Une technologie de pointe pour des
+                    résultats définitifs et une peau d'une douceur incomparable.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up"
+                    style="animation-delay: 0.8s;">
+                    <a href="https://www.planity.com/auraskin"
+                        class="inline-block font-heading text-sm tracking-wider2 uppercase px-10 py-4 rounded-full bg-gradient-to-r from-rose-blush via-rose-gold to-rose-copper text-white shadow-lg shadow-rose-gold/25 hover:shadow-xl hover:shadow-rose-gold/40 hover:scale-105 transition-all duration-300 animate-pulse-glow text-center">
+                        Réserver une Consultation
+                    </a>
+                    <a href="#treatments"
+                        class="inline-block font-heading text-sm tracking-wider2 uppercase px-10 py-4 rounded-full border border-rose-gold/30 text-rose-gold hover:bg-rose-gold/10 hover:border-rose-gold/60 transition-all duration-300 text-center">
+                        Découvrir nos Soins
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Featured Image -->
+            <div class="hidden lg:flex justify-center items-center">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-rose-blush/20 to-rose-gold/20 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-80 transition duration-1000">
+                    </div>
+                    <img src="images/hero-hair-removal.png" alt="Institut d'épilation laser de luxe"
+                        class="relative w-[450px] h-[550px] object-cover rounded-3xl shadow-2xl shadow-black/40" />
+                    <!-- Floating badge -->
+                    <!-- <div
+                        class="absolute -bottom-4 -left-4 bg-slate-deep/90 backdrop-blur-sm border border-rose-gold/20 rounded-2xl px-6 py-4 shadow-xl">
+                        <p class="font-heading text-xs tracking-wider2 uppercase text-rose-gold">La confiance de</p>
+                        <p class="font-heading text-2xl font-semibold text-white">2 000+</p>
+                        <p class="text-xs text-gray-400">Clients satisfaits</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 animate-fade-in"
+            style="animation-delay: 1.2s;">
+            <span class="font-heading text-[10px] tracking-luxe uppercase text-gray-500">Défiler</span>
+            <div class="w-[1px] h-8 bg-gradient-to-b from-rose-gold/50 to-transparent"></div>
+        </div>
+    </section>
+
+
+    <!-- ========================== -->
+    <!-- PHILOSOPHY SECTION         -->
+    <!-- ========================== -->
+    <section id="philosophy" class="relative py-24 lg:py-32 bg-slate-deep overflow-hidden">
+        <!-- Decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-gold/30 to-transparent">
+        </div>
+        <div class="absolute top-20 right-10 w-72 h-72 bg-rose-gold/5 rounded-full blur-[100px]"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+            <!-- Section header -->
+            <div class="text-center mb-20 reveal">
+                <p class="font-heading text-xs tracking-luxe uppercase text-rose-gold mb-4">Notre Philosophie</p>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-6">
+                    La Science au service de <span class="text-gradient-rose font-semibold">l'Élégance</span>
+                </h2>
+                <div class="w-16 h-[2px] bg-gradient-to-r from-rose-copper to-rose-blush mx-auto mb-8"></div>
+                <p class="font-body text-gray-400 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+                    Chez AuraSkin, nous transformons votre routine beauté. Notre expertise se concentre sur l'épilation
+                    définitive, alliant sécurité médicale et confort absolu pour une peau durablement lisse.
+                </p>
+            </div>
+
+            <!-- Philosophy pillars -->
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Pillar 1 -->
+                <div
+                    class="reveal text-center p-8 rounded-2xl border border-white/5 hover:border-rose-gold/20 bg-slate-mid/30 backdrop-blur-sm transition-all duration-500 group">
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <!-- Icon: Precision -->
+                        <svg class="w-7 h-7 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M12 8.25v7.5m3.75-3.75h-7.5" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-sm tracking-wider2 uppercase text-white mb-3">Technologie de Précision
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Nous utilisons uniquement des systèmes laser de pointe, certifiés et calibrés selon le profil
+                        cutané unique de chaque client pour des résultats optimaux et sûrs.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="reveal text-center p-8 rounded-2xl border border-white/5 hover:border-rose-gold/20 bg-slate-mid/30 backdrop-blur-sm transition-all duration-500 group"
+                    style="transition-delay: 0.1s;">
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <!-- Icon: Holistic -->
+                        <svg class="w-7 h-7 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-sm tracking-wider2 uppercase text-white mb-3">Éclat Holistique</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Chaque plan de soin est conçu pour sublimer votre beauté naturelle — pas la masquer. Nous
+                        nourrissons la santé de votre peau de l'intérieur, révélant votre véritable éclat.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="reveal text-center p-8 rounded-2xl border border-white/5 hover:border-rose-gold/20 bg-slate-mid/30 backdrop-blur-sm transition-all duration-500 group"
+                    style="transition-delay: 0.2s;">
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <!-- Icon: Luxury -->
+                        <svg class="w-7 h-7 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-sm tracking-wider2 uppercase text-white mb-3">Expérience de Luxe</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Dès votre arrivée, chaque détail est pensé pour votre confort — cabines privées, ambiance
+                        apaisante et service haut de gamme.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom divider -->
+        <div
+            class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-gold/20 to-transparent">
+        </div>
+    </section>
+
+
+    <!-- ========================== -->
+    <!-- TREATMENTS SECTION         -->
+    <!-- ========================== -->
+    <section id="treatments" class="relative py-24 lg:py-32 bg-cream overflow-hidden">
+        <!-- Subtle background accents -->
+        <div class="absolute top-10 left-10 w-96 h-96 bg-rose-pale/40 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 bg-rose-light/20 rounded-full blur-[100px]"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+            <!-- Section header -->
+            <div class="text-center mb-20 reveal">
+                <p class="font-heading text-xs tracking-luxe uppercase text-rose-copper mb-4">Expertise Laser</p>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-light text-slate-deep mb-6">
+                    Nos <span class="text-gradient-rose font-semibold">Forfaits</span> d'Épilation
+                </h2>
+                <div class="w-16 h-[2px] bg-gradient-to-r from-rose-copper to-rose-blush mx-auto mb-8"></div>
+                <p class="font-body text-gray-500 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+                    Une solution adaptée à chaque zone du corps, utilisant les lasers les plus performants du marché
+                    pour une efficacité maximale sur tous les types de peau.
+                </p>
+            </div>
+
+            <!-- Treatment Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+                <!-- Card 1: Hair Removal -->
+                <div
+                    class="treatment-card reveal group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="images/treatment-hair-removal.png" alt="Épilation Laser Définitive"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-abyss/60 via-transparent to-transparent">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-sm tracking-wider2 uppercase text-slate-deep mb-2 font-semibold">
+                            Épilation Laser Définitive</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-5">
+                            Dites adieu aux poils indésirables. Notre laser diode de dernière génération garantit un
+                            résultat durable, rapide et indolore.
+                        </p>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 font-heading text-xs tracking-wider2 uppercase text-rose-copper hover:text-rose-gold transition-colors duration-300 group/link">
+                            Détails du Forfait
+                            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Skin Resurfacing (Moved to 2nd) -->
+                <div
+                    class="treatment-card reveal group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="relative h-56 overflow-hidden img-placeholder">
+                        <img src="images/treatment-resurfacing.png" alt="Resurfaçage Laser"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-abyss/60 via-transparent to-transparent">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-sm tracking-wider2 uppercase text-slate-deep mb-2 font-semibold">
+                            Resurfaçage & Éclat</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-5">
+                            Pour une peau parfaite après l'épilation. Traitez les imperfections, les pores dilatés et
+                            retrouvez un teint radieux.
+                        </p>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 font-heading text-xs tracking-wider2 uppercase text-rose-copper hover:text-rose-gold transition-colors duration-300 group/link">
+                            En Savoir Plus
+                            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Tattoo Removal -->
+                <div
+                    class="treatment-card reveal group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="relative h-56 overflow-hidden img-placeholder">
+                        <span>Image à venir</span>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-abyss/30 via-transparent to-transparent">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-sm tracking-wider2 uppercase text-slate-deep mb-2 font-semibold">
+                            Détatouage Laser</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-5">
+                            Effacez le passé avec notre laser PicoSure — la référence en matière de détatouage sûr et
+                            efficace.
+                        </p>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 font-heading text-xs tracking-wider2 uppercase text-rose-copper hover:text-rose-gold transition-colors duration-300 group/link">
+                            En Savoir Plus
+                            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Rejuvenation -->
+                <div
+                    class="treatment-card reveal group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="relative h-56 overflow-hidden img-placeholder">
+                        <span>Image à venir</span>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-abyss/30 via-transparent to-transparent">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-sm tracking-wider2 uppercase text-slate-deep mb-2 font-semibold">
+                            Rajeunissement Cutané</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-5">
+                            Stimulez le renouvellement du collagène et restaurez la vitalité naturelle de votre teint
+                            grâce à une thérapie laser douce.
+                        </p>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 font-heading text-xs tracking-wider2 uppercase text-rose-copper hover:text-rose-gold transition-colors duration-300 group/link">
+                            En Savoir Plus
+                            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA below treatments -->
+            <div class="text-center mt-16 reveal">
+                <a href="#pricing"
+                    class="inline-block font-heading text-sm tracking-wider2 uppercase px-10 py-4 rounded-full bg-gradient-to-r from-rose-blush via-rose-gold to-rose-copper text-white shadow-lg shadow-rose-gold/20 hover:shadow-xl hover:shadow-rose-gold/35 hover:scale-105 transition-all duration-300">
+                    Découvrir nos Tarifs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Zones Section -->
+    <section id="pricing" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16 reveal">
+                <p class="font-heading text-xs tracking-luxe uppercase text-rose-copper mb-4">Précision & Clarté</p>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-light text-slate-deep mb-6">
+                    Zones & <span class="text-gradient-rose font-semibold">Tarifs</span>
+                </h2>
+                <div class="w-16 h-[2px] bg-gradient-to-r from-rose-copper to-rose-blush mx-auto"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-10">
+                <!-- Femme -->
+                <div
+                    class="reveal bg-slate-50/50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-500">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-10 h-10 rounded-full bg-rose-gold/10 flex items-center justify-center">
+                            <span class="text-rose-gold text-lg">♀</span>
+                        </div>
+                        <h3 class="font-heading text-lg tracking-wider2 uppercase text-slate-deep font-semibold">Tarifs
+                            Femme</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Lèvre supérieure ou Menton</span>
+                            <span class="font-heading font-semibold text-rose-copper">35€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Aisselles</span>
+                            <span class="font-heading font-semibold text-rose-copper">50€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Maillot Classique</span>
+                            <span class="font-heading font-semibold text-rose-copper">65€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Maillot Intégral</span>
+                            <span class="font-heading font-semibold text-rose-copper">95€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Demi-jambes</span>
+                            <span class="font-heading font-semibold text-rose-copper">130€</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-600 font-body">Jambes complètes</span>
+                            <span class="font-heading font-semibold text-rose-copper">240€</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Homme -->
+                <div
+                    class="reveal bg-slate-50/50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-500">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-10 h-10 rounded-full bg-slate-mid/10 flex items-center justify-center">
+                            <span class="text-slate-mid text-lg">♂</span>
+                        </div>
+                        <h3 class="font-heading text-lg tracking-wider2 uppercase text-slate-deep font-semibold">Tarifs
+                            Homme</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Pommettes ou Cou</span>
+                            <span class="font-heading font-semibold text-rose-copper">45€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Barbe complète</span>
+                            <span class="font-heading font-semibold text-rose-copper">85€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Aisselles</span>
+                            <span class="font-heading font-semibold text-rose-copper">65€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Torse ou Dos</span>
+                            <span class="font-heading font-semibold text-rose-copper">160€</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-3 border-b border-gray-200/60">
+                            <span class="text-gray-600 font-body">Épaules</span>
+                            <span class="font-heading font-semibold text-rose-copper">90€</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-600 font-body">Jambes complètes</span>
+                            <span class="font-heading font-semibold text-rose-copper">290€</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Forfaits -->
+                <div
+                    class="reveal bg-gradient-to-br from-slate-deep to-slate-abyss rounded-3xl p-8 shadow-2xl relative">
+                    <div class="absolute top-6 right-8">
+                        <span
+                            class="bg-rose-gold/20 text-rose-gold text-[10px] tracking-widest uppercase px-3 py-1 rounded-full border border-rose-gold/30">Populaire</span>
+                    </div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-10 h-10 rounded-full bg-rose-gold/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+                        </div>
+                        <h3 class="font-heading text-lg tracking-wider2 uppercase text-white font-semibold">Nos Forfaits
+                        </h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div
+                            class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-rose-gold/30 transition-colors">
+                            <h4 class="text-white font-heading text-sm uppercase mb-1">Essentiel Femme</h4>
+                            <p class="text-gray-400 text-xs mb-3">Aisselles + Maillot Classique</p>
+                            <span class="text-rose-gold font-heading text-xl font-bold">100€ <span
+                                    class="text-xs text-gray-500 font-normal">/ séance</span></span>
+                        </div>
+                        <div
+                            class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-rose-gold/30 transition-colors">
+                            <h4 class="text-white font-heading text-sm uppercase mb-1">Total Smooth</h4>
+                            <p class="text-gray-400 text-xs mb-3">Aisselles + Maillot Intégral + Demi-jambes</p>
+                            <span class="text-rose-gold font-heading text-xl font-bold">240€ <span
+                                    class="text-xs text-gray-500 font-normal">/ séance</span></span>
+                        </div>
+                        <div
+                            class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-rose-gold/30 transition-colors">
+                            <h4 class="text-white font-heading text-sm uppercase mb-1">Sport Homme</h4>
+                            <p class="text-gray-400 text-xs mb-3">Torse + Dos + Épaules</p>
+                            <span class="text-rose-gold font-heading text-xl font-bold">320€ <span
+                                    class="text-xs text-gray-500 font-normal">/ séance</span></span>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-[10px] text-gray-500 italic text-center">Consultez-nous pour des forfaits 100%
+                        personnalisés.</p>
+                </div>
+            </div>
+
+            <p class="text-center mt-12 text-gray-400 text-sm italic reveal">
+                * Les tarifs sont indiqués par séance. Un devis personnalisé vous sera remis lors de la consultation
+                offerte.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ========================== -->
+    <!-- RESULTS / STATS BANNER     -->
+    <!-- ========================== -->
+    <section class="relative py-16 bg-gradient-rose overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-rose-copper/90 via-rose-gold/90 to-rose-blush/90"></div>
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="reveal">
+                    <p class="font-heading text-3xl lg:text-4xl font-bold text-white mb-1">2 000+</p>
+                    <p class="font-heading text-xs tracking-wider2 uppercase text-white/80">Clients Satisfaits</p>
+                </div>
+                <div class="reveal">
+                    <p class="font-heading text-3xl lg:text-4xl font-bold text-white mb-1">15+</p>
+                    <p class="font-heading text-xs tracking-wider2 uppercase text-white/80">Ans d'Expérience</p>
+                </div>
+                <div class="reveal">
+                    <p class="font-heading text-3xl lg:text-4xl font-bold text-white mb-1">98%</p>
+                    <p class="font-heading text-xs tracking-wider2 uppercase text-white/80">Taux de Satisfaction</p>
+                </div>
+                <div class="reveal">
+                    <p class="font-heading text-3xl lg:text-4xl font-bold text-white mb-1">12+</p>
+                    <p class="font-heading text-xs tracking-wider2 uppercase text-white/80">Technologies Laser</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================== -->
+    <!-- CONTACT / FOOTER SECTION   -->
+    <!-- ========================== -->
+    <section id="contact" class="relative py-24 lg:py-32 bg-slate-abyss overflow-hidden">
+        <!-- Decorative -->
+        <div
+            class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-gold/20 to-transparent">
+        </div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-rose-gold/5 rounded-full blur-[100px]"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+            <!-- Section header -->
+            <div class="text-center mb-16 reveal">
+                <p class="font-heading text-xs tracking-luxe uppercase text-rose-gold mb-4">Nous Contacter</p>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-6">
+                    Réservez votre <span class="text-gradient-rose font-semibold">Consultation</span>
+                </h2>
+                <div class="w-16 h-[2px] bg-gradient-to-r from-rose-copper to-rose-blush mx-auto"></div>
+            </div>
+
+            <!-- Contact Details - Centered layout -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 reveal">
+                <!-- Location -->
+                <div
+                    class="text-center p-6 rounded-2xl border border-white/5 bg-slate-mid/30 backdrop-blur-sm hover:border-rose-gold/20 transition-all duration-500 group">
+                    <div
+                        class="w-14 h-14 mx-auto mb-5 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-6 h-6 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-heading text-xs tracking-wider2 uppercase text-rose-gold mb-2">Nous Rendre Visite
+                    </h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Angers, France</p>
+                </div>
+                <!-- Phone -->
+                <div
+                    class="text-center p-6 rounded-2xl border border-white/5 bg-slate-mid/30 backdrop-blur-sm hover:border-rose-gold/20 transition-all duration-500 group">
+                    <div
+                        class="w-14 h-14 mx-auto mb-5 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-6 h-6 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-heading text-xs tracking-wider2 uppercase text-rose-gold mb-2">Appelez-nous</h4>
+                    <p class="text-gray-400 text-sm">+33 (0)2 00 00 00 00</p>
+                </div>
+                <!-- Email -->
+                <div
+                    class="text-center p-6 rounded-2xl border border-white/5 bg-slate-mid/30 backdrop-blur-sm hover:border-rose-gold/20 transition-all duration-500 group">
+                    <div
+                        class="w-14 h-14 mx-auto mb-5 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-6 h-6 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                    </div>
+                    <h4 class="font-heading text-xs tracking-wider2 uppercase text-rose-gold mb-2">Écrivez-nous</h4>
+                    <p class="text-gray-400 text-sm">auraskinlaserpro@gmail.com</p>
+                </div>
+                <!-- Hours -->
+                <div
+                    class="text-center p-6 rounded-2xl border border-white/5 bg-slate-mid/30 backdrop-blur-sm hover:border-rose-gold/20 transition-all duration-500 group">
+                    <div
+                        class="w-14 h-14 mx-auto mb-5 rounded-full bg-gradient-to-br from-rose-blush/20 to-rose-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-6 h-6 text-rose-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-heading text-xs tracking-wider2 uppercase text-rose-gold mb-2">Horaires d'Ouverture
+                    </h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Lun — Ven : 9h00 – 19h00<br />Samedi : 10h00 –
+                        17h00<br />Dimanche : Fermé</p>
+                </div>
+            </div>
+
+            <!-- Social Icons - Centered -->
+            <div class="mt-12 flex items-center justify-center gap-4 reveal">
+                <a href="https://www.instagram.com/auraskinlaserpro?igsh=dndvM2ZlcWl5emNu"
+                    class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:border-rose-gold/40 hover:text-rose-gold hover:bg-rose-gold/5 transition-all duration-300"
+                    aria-label="Instagram">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                    </svg>
+                </a>
+                <a href="#"
+                    class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:border-rose-gold/40 hover:text-rose-gold hover:bg-rose-gold/5 transition-all duration-300"
+                    aria-label="Facebook">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="text-center mt-12 reveal">
+                <a href="mailto:uraskinlaserpro@gmail.com"
+                    class="inline-block font-heading text-sm tracking-wider2 uppercase px-10 py-4 rounded-full bg-gradient-to-r from-rose-blush via-rose-gold to-rose-copper text-white shadow-lg shadow-rose-gold/20 hover:shadow-xl hover:shadow-rose-gold/35 hover:scale-105 transition-all duration-300">
+                    Prendre Rendez-vous par Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================== -->
+    <!-- FOOTER                     -->
+    <!-- ========================== -->
+    <footer class="bg-slate-abyss border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="font-heading text-xs tracking-wider2 uppercase text-gray-500">
+                &copy; 2026 AuraSkin | Épilation Laser Angers. Tous droits réservés.
+            </p>
+            <div class="flex items-center gap-6">
+                <a href="#"
+                    class="font-body text-xs text-gray-500 hover:text-rose-gold transition-colors duration-300">Politique
+                    de Confidentialité</a>
+                <a href="#"
+                    class="font-body text-xs text-gray-500 hover:text-rose-gold transition-colors duration-300">Conditions
+                    Générales</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========================== -->
+    <!-- JAVASCRIPT                 -->
+    <!-- ========================== -->
+    <script>
+        // ─── Navbar scroll effect ───
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // ─── Mobile menu toggle ───
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileBtn.classList.remove('open');
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // ─── Scroll reveal animation (Intersection Observer) ───
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+        );
+        revealElements.forEach((el) => revealObserver.observe(el));
+
+        // ─── Smooth scroll for anchor links ───
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return; // skip placeholder links
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
